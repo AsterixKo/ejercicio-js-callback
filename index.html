@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -28,11 +29,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         let premios = [];
+        let rutasImagenes = [];
 
         function empezar(callback1) {
             setTimeout(function () {
                 //simulamos carga de datos
                 premios = ['coche', 'moto', 'bicicleta'];
+                rutasImagenes = ['image/coche.jpg', 'image/moto.jpg', 'image/bicicleta.jpg']; 
                 callback1();
             }, 2000);
         }
@@ -54,12 +57,13 @@
             $('#id-main-container-internal').empty(); //limpiamos texto loading...
             let divPremios = '';
             for (let i = 0; i < premios.length; i++) {
-                divPremios += `<div class="premio">${premios[i]}</div>`;
+                // divPremios += `<div class="premio">${premios[i]}</div>`;
+                divPremios += `<div class="premio"><figure><img class="images" src="${rutasImagenes[i]}"><figcaption>${premios[i]}</figcaption></figure></div>`;
             }
 
             divPremios += '<div>Tienes 10 segundos para participar...</div>';
             divPremios +=
-                '<div id="div-button"><button id="button-participa" type="button" onclick="participa();">Participa</button></div>';
+                '<div id="div-button"><button id="button-participa" type="button" onclick="clickParticipa();">Participa</button></div>';
             $('#id-main-container-internal').append(divPremios);
 
             ocultarBoton(()=>{
@@ -67,8 +71,9 @@
             });
         });
 
-        function participa() {
+        function clickParticipa() {
             console.log('participando...');
+            alert('Has participado!!');
         }
     </script>
 </body>
