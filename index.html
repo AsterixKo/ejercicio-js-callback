@@ -37,6 +37,15 @@
             }, 2000);
         }
 
+        function ocultarBoton(callback2){
+            setTimeout(function (){
+                console.log('eliminamos el botón');
+                $('#button-participa').remove();
+                callback2();
+            },
+            5000);
+        }
+
         //comienza el flujo de ejecución
         $('#id-main-container-internal').append('<div id="loaging"><p>Loading...</p></div>');
 
@@ -50,8 +59,12 @@
 
             divPremios += '<div>Tienes 10 segundos para participar...</div>';
             divPremios +=
-                '<div id="button"><button type="button" onclick="participa();">Participa</button></div>';
+                '<div id="div-button"><button id="button-participa" type="button" onclick="participa();">Participa</button></div>';
             $('#id-main-container-internal').append(divPremios);
+
+            ocultarBoton(()=>{
+                console.log('boton eliminado');
+            });
         });
 
         function participa() {
