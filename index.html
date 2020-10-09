@@ -8,6 +8,11 @@
 </head>
 
 <body>
+    <div class="main-container">
+        <div id="id-main-container-internal" class="main-container-internal">
+
+        </div>
+    </div>
     <!-- 
         -Llamamos a una función que mediante un timeout simula un recogida de datos que tarda 5 segundos.
 
@@ -22,7 +27,36 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        let premios = [];
 
+        function empezar(callback1) {
+            setTimeout(function () {
+                //simulamos carga de datos
+                premios = ['coche', 'moto', 'bicicleta'];
+                callback1();
+            }, 2000);
+        }
+
+        //comienza el flujo de ejecución
+        $('#id-main-container-internal').append('<div id="loaging"><p>Loading...</p></div>');
+
+        empezar(() => {
+            //pintamos
+            $('#id-main-container-internal').empty(); //limpiamos texto loading...
+            let divPremios = '';
+            for (let i = 0; i < premios.length; i++) {
+                divPremios += `<div class="premio">${premios[i]}</div>`;
+            }
+
+            divPremios += '<div>Tienes 10 segundos para participar...</div>';
+            divPremios +=
+                '<div id="button"><button type="button" onclick="participa();">Participa</button></div>';
+            $('#id-main-container-internal').append(divPremios);
+        });
+
+        function participa() {
+            console.log('participando...');
+        }
     </script>
 </body>
 
